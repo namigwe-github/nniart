@@ -20,6 +20,7 @@ router
 .post(async (req,res) => { // needs to be async since it will take some time 
     try {
         const { prompt } = req.body; //going to come from front end 
+        console.log(prompt)
         const aiResponse = await openai.createImage({
             prompt,
             n:1,
@@ -28,11 +29,10 @@ router
         });
         const image = aiResponse.data.data[0].b64_json;
         res.status(200).json({ photo: image });
-        
     } catch (error) {
         console.log(error.message);
         res.status(500).send(error?.response.data.error.message);
-        console.log(process.env.OPENAI_API_KEY)
+        
     }
 })
 
