@@ -5,6 +5,8 @@ import { preview } from '../assets';
 import { getRandomPrompt} from '../utils';
 import { FormField, Loader } from '../components';
 
+import HOST_NAME from '../env.jsx'
+
 const CreatePost = () => {
     const navigate = useNavigate();
     const [form, setForm] = useState({
@@ -14,12 +16,12 @@ const CreatePost = () => {
     });
     const [generatingImg, setGeneratingImg] = useState(false);
     const [loading,setLoading] = useState(false);
-
+    console.log(HOST_NAME+'/api/v1/dalle');
     const generateImage = async () => {
         if(form.prompt) {
             try {
                 setGeneratingImg(true);
-                const response = await fetch('https://nniart.onrender.com/api/v1/dalle', 
+                const response = await fetch(HOST_NAME+'/api/v1/dalle', 
                 {
                     method: 'POST',
                     headers: {
@@ -44,7 +46,7 @@ const CreatePost = () => {
         if(form.prompt && form.photo) {
             setLoading(true);
             try {
-                const response = await fetch('https://nniart.onrender.com/v1/post',
+                const response = await fetch(HOST_NAME + '/api/v1/post',
                 {
                     method:'POST',
                     headers: {

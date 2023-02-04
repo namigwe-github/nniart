@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Loader, Card, FormField} from '../components';
+import HOST_NAME from '../env.jsx';
+
 const RenderCards = ({data,title}) => {
     if(data?.length > 0) {
         return data.map((post) => <Card key={post._id} {...post} /> )
@@ -23,7 +25,7 @@ const Home = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('https://nniart.onrender.com/api/v1/post',
+            const response = await fetch(HOST_NAME+'/api/v1/post',
             {
                 method:'GET',
                 headers: {

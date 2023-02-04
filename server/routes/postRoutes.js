@@ -39,6 +39,7 @@ router.route('/').get(async (req,res) => {
     
         res.status(201).json({success:true, data:newPost});
     } catch (error) {
+        console.log(error);
         res.status(500).json({success:false, message:error});
     }
 });
