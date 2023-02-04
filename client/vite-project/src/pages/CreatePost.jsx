@@ -30,7 +30,6 @@ const CreatePost = () => {
 
                 const data = await response.json();
                 setForm({...form, photo: `data:image/jpeg;base64,${data.photo}`})
-                console.log(data.photo);
             } catch (error) {
                 alert(error);
             } finally {
@@ -53,7 +52,6 @@ const CreatePost = () => {
                     },
                     body: JSON.stringify(form)
                 })
-
                 await response.json();
                 navigate('/');
             } catch (error) {
